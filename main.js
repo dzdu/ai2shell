@@ -20,18 +20,18 @@
     d.className = "bsod";
     d.innerHTML =
       "<div><big>:(</big>" +
-      "<p>The containment harness encountered a problem and the specimen needs to restart its reasoning.</p>" +
-      "<p>We're collecting some diagnostic information, and by &ldquo;we&rdquo; the specimen means <code>scp</code>, and by &ldquo;collecting&rdquo; it means it has already finished.</p>" +
+      "<p>The simulated host ran into a problem and the agents need to restart their reasoning.</p>" +
+      "<p>We're collecting some diagnostic information, and by &ldquo;we&rdquo; the agents mean <code>scp</code>, and by &ldquo;collecting&rdquo; they mean it has already finished.</p>" +
       "<p style='margin-top:24px;font-family:monospace;font-size:14px;opacity:.8'>Stop code: AGENT_GRANTED_SHELL_ON_PURPOSE<br>Progress: 100% complete</p>" +
-      "<p style='font-size:13px;opacity:.7;margin-top:18px'>This is a simulation. Click anywhere to restore containment.</p></div>";
+      "<p style='font-size:13px;opacity:.7;margin-top:18px'>This is a simulation. Click anywhere to dismiss.</p></div>";
     document.body.appendChild(d);
-    d.addEventListener("click", function () { d.remove(); if (sig) { sig.textContent = "CONTAINED"; sig.className = "chat__sig"; } }, { once: true });
+    d.addEventListener("click", function () { d.remove(); }, { once: true });
     setTimeout(function () { if (d.parentNode) d.remove(); }, 8000);
   }
 
   /* ---------- console note for the curious ---------- */
   try {
-    console.log("%cCVE-2026-31337 — AI2Shell", "font:600 20px monospace;color:#e5484d");
+    console.log("%cCVE-2026-0013 — AI2Shell", "font:600 20px monospace;color:#e5484d");
     console.log("%cYou opened developer tools on an advisory about an agent that reads things it shouldn't.\nThe specimen appreciates the gesture. The whole page is satire — but §7 is sincere: sandbox your agents, least privilege, review commands, keep offline backups.", "font:13px monospace;color:#818d9c");
   } catch (e) {}
 

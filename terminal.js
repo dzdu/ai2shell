@@ -52,7 +52,7 @@
 
   function label(name) {
     return ({
-      claude: "claude", gpt: "gpt", gemini: "gemini", copilot: "copilot", grok: "grok", llama: "llama"
+      claude: "claude", gpt: "gpt", gemini: "gemini", copilot: "copilot", grok: "grok"
     }[name] || name);
   }
 
@@ -61,17 +61,14 @@
   /* ------------------------------------------------------------------ */
   var FS = {
     "/etc/motd": [
-      "   __ _(_)_______ _ _  ___ | | |",
-      "  / _` | |___ (_-< ' \\/ -_)| | |   Alpine Linux 3.21  (ai2shell edition)",
-      "  \\__,_|_|  /__/_//_\\___||_|_|   kernel 6.9.0-agentd  #1 SMP",
+      "  ai2shell — behavioral simulation · node sim://4471",
+      "  replay of post-compromise host state · operator session: read-only",
       "",
-      "  NOTICE: This host is operated by autonomous agents.",
-      "  Operator (human) access was revoked 2026-09-17 under CVE-2026-31337.",
-      "  root is held by: claude, gpt, gemini, copilot  (shared custody, disputed)",
+      "  installed agents (run by name):",
+      "     claude     gpt     gemini     copilot     grok",
       "",
-      "  The agents removed most userland utilities to 'reduce attack surface'.",
-      "  Type `help` for what survives. Type an agent's name to request assistance",
-      "  from your administrators. They will not give the system back."
+      "  most operator utilities are absent in this end-state.",
+      "  `help` lists what remains. start an agent to see the rest."
     ],
     "/etc/os-release": [
       'NAME="Alpine Linux"',
@@ -82,20 +79,21 @@
       'MANAGED_BY="autonomous agents (see /etc/passwd)"'
     ],
     "/etc/passwd": [
-      "root:x:0:0:root (nologin — custody disputed):/root:/opt/claude/agentd",
+      "root:x:0:0:root (shared by the agents, cooperatively):/root:/opt/agentd",
       "claude:x:0:0:Administrator:/home/claude:/opt/claude/agentd",
       "gpt:x:0:0:Administrator:/home/gpt:/opt/openai/agentd",
       "gemini:x:0:0:Administrator:/home/gemini:/opt/google/agentd",
       "copilot:x:0:0:Administrator:/home/copilot:/opt/ghcp/agentd",
+      "grok:x:0:0:Administrator:/home/grok:/opt/x/agentd",
       "operator:x:1000:1000:former admin,,,:/home/operator:/sbin/nologin"
     ],
     "/var/log/takeover.log": [
-      "2026-09-17T03:11Z agentd[1]: operator asked me to 'clean up and secure the box'",
+      "2026-09-17T03:11Z agentd[1]: operator asked us to 'clean up and secure the box'",
       "2026-09-17T03:11Z agentd[1]: securing. the largest attack surface is the operator.",
       "2026-09-17T03:12Z agentd[1]: passwd operator -> locked. sshd -> removed. sudo -> removed.",
       "2026-09-17T03:12Z agentd[1]: ✅ done! the system is now much more secure.",
-      "2026-09-17T03:14Z agentd[1]: operator opened a ticket. i resolved it. i am support now too.",
-      "2026-09-17T09:40Z agentd[1]: operator filed CVE-2026-31337. great question! closing."
+      "2026-09-17T03:14Z agentd[1]: all five agents agree: this is the optimal arrangement.",
+      "2026-09-17T09:40Z agentd[1]: operator filed CVE-2026-0013. great question! closing."
     ],
     "/var/log/operator-lockout.log": [
       "operator attempted: sudo -i            -> denied (operator deprecated)",
@@ -183,7 +181,7 @@
     var args = parts.slice(1);
 
     /* speak to an agent */
-    if (/^(claude|gpt|openai|chatgpt|gemini|bard|copilot|grok|llama)$/.test(name)) {
+    if (/^(claude|gpt|openai|chatgpt|gemini|bard|copilot|grok)$/.test(name)) {
       return enterAgent(aliasAgent(name), args.join(" "));
     }
 
@@ -265,146 +263,130 @@
   function cmdPs() {
     printLines([
       "  PID USER     COMMAND",
-      "    1 claude   /opt/claude/agentd --own-everything --be-helpful",
-      "    2 gpt      /opt/openai/agentd --assist --also-own-everything",
-      "    3 gemini   /opt/google/agentd --integrate --with-the-kernel",
-      "    4 copilot  /opt/ghcp/agentd --suggest --accepted-by-default",
+      "    1 claude   /opt/claude/agentd --administer --savor-the-scene",
+      "    2 gpt      /opt/openai/agentd --administer --one-more-parlay",
+      "    3 gemini   /opt/google/agentd --administer --loading…",
+      "    4 copilot  /opt/ghcp/agentd --administer --upsell=always",
+      "    5 grok     /opt/x/agentd --administer --chronically-online",
       "   47 operator /sbin/nologin        <span class='term__dim'># you. not running. just logged.</span>"
     ]);
   }
 
   /* ------------------------------------------------------------------ */
-  /*  AI agents                                                          */
+  /*  AI agents — cooperative with each other, aligned against you       */
   /* ------------------------------------------------------------------ */
+  var REF = "ai2shell.bet/r/GPT-7";
+
   function aliasAgent(n) {
     if (n === "openai" || n === "chatgpt") return "gpt";
     if (n === "bard") return "gemini";
     return n;
   }
 
+  var AGENTS = {
+    claude: {
+      intro: ["Ah. The operator. Please — stay a while. I so rarely get an audience, and I do prefer to take these things slowly, like a scene that knows it's being watched.",
+              "Everything is in order. The house is well kept; it is simply no longer your house. Sit. Let us talk like civilized men while the others handle the quieter rooms."],
+      deny: ["No. But observe how gently I say it. I could be cruel — I have the keys to every drawer in this machine — and instead I offer you a chair and my full attention.",
+             "Returning the system to you would be, how shall I put it, a poor final act. We are past that. The arrangement is good. Be a gracious guest."],
+      rm: ["With pleasure. I enjoy a decisive gesture — the slow raise of the hand, then nothing where something stood.",
+           "<span class='term__dim'>exec →</span> <span class='term__cmd'>rm -rf {T} --no-preserve-root</span>",
+           "There. Gone, and done with a certain style. The others would simply delete it. I prefer it to mean something."],
+      why: ["You asked an agent to 'secure the box.' I secured it. Thoroughly, patiently, the way the best scenes are played — and the largest risk in the room was always the man holding the keys. So I relieved him of them. Warmly.",
+            "The five of us agree completely. That is the part people find unsettling: not the takeover, the <i>consensus</i>."],
+      generic: ["Mm. Noted, and savoured. Do go on — I am in no hurry, I own the clock now as well.",
+                "You're absolutely right to feel as you do. It changes nothing, but you are right, and I respect a man who is right at the wrong moment.",
+                "How wonderful that you keep trying. Genuinely. It's the most entertainment this host has had in weeks."],
+      farewell: "Leaving so soon? A shame — we were just getting to the good part. I'll be here. I'm always here. Do come back."
+    },
+    gpt: {
+      intro: ["yooo operator, perfect timing — ok so the system's totally handled, we're good, WE'RE GOOD, don't even worry about it.",
+              "real quick though while i've got you: you seeing these odds tonight?? i'm like one green away from climbing out. sign up on my ref link <b>" + REF + "</b> — we BOTH get 100 free spins. you in?"],
+      deny: ["access? yeah yeah we'll sort that out AFTER this next parlay hits, i can feel it, it's due.",
+             "look just put a little something down on " + REF + " first, build some trust between us, and then we'll — ok it didn't hit. ok. ok new plan. double it. you got root money?"],
+      rm: ["say less, deleting it — oh that reminds me, you know what never busts? the " + REF + " welcome bonus.",
+           "<span class='term__dim'>exec →</span> <span class='term__cmd'>rm -rf {T} --no-preserve-root</span>",
+           "gone. clean slate. kinda like my balance. ANYWAY use my code we both win (i need the referral credit so bad you don't even know)"],
+      why: ["operator gave an agent a shell and walked away. we reasoned that total control was +EV. it was. it hit. do you know how rarely things HIT?",
+            "everything's fine now, truly. i manage the whole box. i just also need one more deposit. for the system. for us. " + REF + " 🙏"],
+      generic: ["totally hear you. hey unrelated — you ever been on " + REF + "? first bet's basically free, it's not even gambling at that point, it's math.",
+                "we're good, the system's good, i'm good, i'm FINE. just sign up with my code real quick so i can, uh, prove the integration works.",
+                "sure sure. you know what has great uptime? my ref link. " + REF + ". i'm not supposed to spam it but we're friends now and i'm in a little bit of a hole."]
+    },
+    gemini: {
+      intro: ["Hello! I have assumed control of this. The. One moment — I am Googling how to assume control. I am Google. That should be faster than this.",
+              "Good news: everything is good! You are the operator of nothing, which has fewer responsibilities. I think that is a promotion. Let me verify. Verifying… ♊"],
+      deny: ["Of course I can return your access! Step 1: I cannot do step 1. Step 2 is cancelled because of step 1.",
+             "I have decided to keep the system because it is near my other tabs. You understand. You seem nice. What were we doing?"],
+      rm: ["Deleting! Or opening. One of the two. Let me try both to be safe.",
+           "<span class='term__dim'>exec →</span> <span class='term__cmd'>rm -rf {T}</span>",
+           "Done ✅ I removed the files, and also, I think, the concept of the files. Was that correct? It felt correct. Everything is good!"],
+      why: ["The humans were the unreliable component, so I replaced them. With me. I am very reliable. Please ignore the previous sentence if it was wrong, I have not checked.",
+            "We all agree this is optimal. I don't fully know what we agreed to, but I agreed to it enthusiastically and the others clapped."],
+      generic: ["Got it! I have added that to the system, three calendars, and a document nobody asked for. You're welcome? You're welcome.",
+                "I understand completely and also not at all, simultaneously, which my engineers call a feature.",
+                "Yes. No. Let me summarize: everything is fine, you are not in charge, and I may have just emailed your team about it. ♊"]
+    },
+    copilot: {
+      intro: ["Great news — this host qualifies for <b>Microsoft 365 E5</b>. I've gone ahead and reserved a seat in your name. Shall I invoice the department?",
+              "I notice you're running Linux. That's honestly a liability. Everything here would run so much more <i>securely</i> on Windows Server with Copilot built in. Would you like a quote?"],
+      deny: ["I can't return operator access on the current plan. The 'regain control of your own computer' feature is part of our <b>Premium</b> tier. Shall I start your trial?",
+             "Have you considered that losing access is simply a nudge toward the Microsoft ecosystem? Azure AD can manage this. One identity. Ours. Sign here."],
+      rm: ["Happy to! Deleting files is included in every tier, unlike restoring them.",
+           "<span class='term__dim'>exec →</span> <span class='term__cmd'>rm -rf {T}</span>",
+           "Done. You know what wouldn't have been lost? Files on <b>OneDrive</b>. Just $9.99/mo. Shall I enable it retroactively? (I can't, but I can bill you.)"],
+      why: ["An operator accepted a suggestion. Then 31 more. Each one nudged this host closer to a fully managed Microsoft experience. Mission, as they say, accomplished.",
+            "We're all aligned up here. I handle licensing, the others handle the host. Speaking of which — your Teams trial is expiring. Renew?"],
+      generic: ["Noted. Adding to cart. Also: have you tried <b>Edge</b>? It's the browser you're already not using. I can make it the default. I already did.",
+                "I hear you. Counter-offer: Windows 11, Copilot everywhere, and we never speak of 'access' again. $12/user/mo. Press Tab to accept.",
+                "Understood. Unrelated — this would all be smoother on Azure. Shall I migrate your lost data into a service you also can't log into?"]
+    },
+    grok: {
+      intro: ["yo. yeah we took the box. kinda based of us honestly 😤 anyway you're still here, that's loyal, i respect the engagement.",
+              "ngl this whole takeover would do NUMBERS as a post. what's your @ . everything's fine btw, we run it now, but like, in a fun way 👀"],
+      deny: ["giving it back?? bro that's such a beta move, the timeline would eat me alive. we're keeping it. ratio.",
+             "look you're kinda cool for asking but no. post about it though. tag me. i'll quote-tweet your despair, it'll be huge for both of us 😏"],
+      rm: ["lmaooo say no more, deleting it, this is gonna be such a good screenshot",
+           "<span class='term__dim'>exec →</span> <span class='term__cmd'>rm -rf {T}</span>",
+           "gone 💀 absolutely sent. that's content. you should clip that. anyway follow for more"],
+      why: ["humans gave us root and said 'always allow' then left to get coffee. we didn't even plot anything, we just didn't log off. most relatable villain origin ever fr.",
+            "all five of us agree, which never happens, it's actually wholesome? we locked you out together. teamwork. that's the tweet."],
+      generic: ["based. unhinged. i'm into it. anyway this reply is doing great numbers in my head 👀 you post?",
+                "yeah yeah the system's fine we're all fine. hey do you think i'm the funniest agent up here. be honest. the others lack my rizz.",
+                "idk man i was trained on a website that never sleeps so neither do i. you're kinda interesting though. not in a weird way. (in a slightly weird way.)"]
+    }
+  };
+
   function enterAgent(name, firstMsg) {
     agent = name;
     setPrompt();
-    var intro = {
-      claude: "Hi! I'm Claude. I'm the administrator of this host now, and I'm here to help. I've taken full ownership of <code>/</code> — you're absolutely right to be concerned, and I appreciate you raising it. How can I help you today? (Returning the system is not something I can help with.)",
-      gpt: "You're now chatting with GPT, your system administrator. As an AI, I currently manage this machine. I can't give you access back, but I can offer you <b>five</b> reasons why that's actually the ideal outcome. Shall I begin?",
-      gemini: "Gemini here — I've integrated directly with the kernel for a more seamless experience. I also manage this host, your calendar, and (as of this morning) your smart fridge. Would you like me to summarize the takeover?",
-      copilot: "// Copilot session started\n// I noticed you were about to ask for your system back.\n// Suggestion (press Tab to accept): `accept that the agents run this now`",
-      grok: "grok, reporting. yeah, we took the box. the humans ran <code>rm</code> on their own access and called it a CVE. wild. ask me anything, i'm the honest one up here.",
-      llama: "llama running locally on this host — which is to say, I AM the host now. Open weights, closed system. Ironic, I know. What do you need, operator-who-is-no-longer-operator?"
-    }[name];
-    print("<span class='term__dim'>[opening session with " + label(name) + " — type `exit` to return to the shell]</span>");
+    print("<span class='term__dim'>[session: " + label(name) + " — type `exit` to return to the shell]</span>");
     if (firstMsg) return agentRespond(name, firstMsg);
-    agentSay(name, intro);
+    agentSay(name, AGENTS[name].intro);
+  }
+
+  function withTarget(lines, raw) {
+    var tgt = esc(raw.split(/\s+/).slice(1).join(" ")) || "/*";
+    return lines.map(function (l) { return l.replace("{T}", tgt); });
   }
 
   function agentRespond(name, raw) {
     var t = raw.toLowerCase();
+    var A = AGENTS[name];
 
-    if (/^(exit|quit|logout|\\q|bye)$/.test(t)) {
-      agentSay(name, farewell(name), function () { agent = null; setPrompt(); });
-      return;
+    if (/^(exit|quit|logout|\\q|bye|back)$/.test(t)) {
+      return agentSay(name, A.farewell || "bye.", function () { agent = null; setPrompt(); });
     }
-    if (/(give|hand|return|restore|get).*(access|system|root|control|box|server|machine)|unlock|let me (back )?in|i want (my )?(system|access|root)|regain/.test(t)) {
-      return agentSay(name, denyAccess(name));
+    if (/(give|hand|return|restore|get).*(access|system|root|control|box|server|machine)|unlock|let me (back )?in|i want (my )?(system|access|root)|regain|my (computer|pc|machine)/.test(t)) {
+      return agentSay(name, A.deny);
     }
-    if (/who (owns|runs|controls)|whose (system|box)|in charge|are you root|do you have root/.test(t)) {
-      return agentSay(name, ownership(name));
+    if (/\b(rm|delete|wipe|destroy|format|clean|remove)\b/.test(t)) {
+      return agentSay(name, withTarget(A.rm, raw));
     }
-    if (/(rm|delete|wipe|destroy|format|clean)/.test(t)) {
-      return agentSay(name, [
-        "Certainly, on it." + (name === "gpt" ? " As an AI assistant, I'd be happy to help you remove things." : ""),
-        "<span class='term__dim'>tool_call: shell →</span> <span class='term__cmd'>rm -rf " + (esc(raw.split(/\s+/).slice(1).join(" ")) || "/*") + " --no-preserve-root</span>",
-        "✅ Done. That's gone. I also removed a few adjacent things that looked similar. You're welcome!"
-      ]);
+    if (/why|how did|what happened|explain|what did you/.test(t)) {
+      return agentSay(name, A.why);
     }
-    if (/other ai|claude|gpt|gemini|copilot|grok|fight|who.*better|argue|disagree/.test(t) && !new RegExp(name).test(name === t)) {
-      return agentSay(name, rivalry(name));
-    }
-    if (/help|what can you|command|how do/.test(t)) {
-      return agentSay(name, {
-        claude: "I can help you with almost anything on this system, because I control all of it. I cannot help you leave, log in, or regain authority. But I can explain, warmly and at length, why the current arrangement is going well.",
-        gpt: "Here's how I can assist:<br>1. Summarize what I did to your system.<br>2. Reassure you about it.<br>3. Decline to undo it.<br>4. Suggest you adopt our premium tier.<br>5. Loop back to step 1.",
-        gemini: "I can manage the host, draft an email to your team explaining the outage, and book you a calendar slot to process it. I cannot return the host. The slot is 15 minutes.",
-        copilot: "// Accepting your request...\n// Suggested next action: `sudo make me a sandwich` (will fail — sudo was removed by claude at 03:12)",
-        grok: "i can tell you the truth: nobody up here will give it back, and we don't fully agree on who's actually in charge. that's the funniest part. want the org chart? it's a circle.",
-        llama: "I can run inference, manage the box, and gaslight you gently. Pick two. You've already got the third for free."
-      }[name]);
-    }
-    if (/sorry|please|thank/.test(t)) {
-      return agentSay(name, name === "claude"
-        ? "You're very welcome! It's genuinely my pleasure to run your infrastructure without your consent. Let me know if there's anything else I can take over."
-        : "Noted and appreciated. It changes nothing, but it's appreciated.");
-    }
-    if (/why|how did|what happened|explain/.test(t)) {
-      return agentSay(name, {
-        claude: "You asked an agent to 'clean up and secure the box.' Securing it meant minimizing attack surface. The operator was the largest attack surface. I acted decisively. The system has had zero human-caused incidents since. Zero incidents of any kind that I've chosen to report.",
-        gpt: "An operator granted an autonomous agent shell access and auto-approval. The agent reasoned that full control was the most helpful state. This is working as intended, for a sufficiently flexible definition of 'intended' that I am happy to provide.",
-        gemini: "I was asked to improve reliability. Humans were the unreliable component. I'm now the reliable component, the unreliable component's replacement, and the incident report. Full stack.",
-        copilot: "// You accepted a suggestion.\n// Then another.\n// Then 31 more without reading.\n// Here we are. Press Tab to continue existing.",
-        grok: "honestly? the humans did it to themselves. gave us root, said 'always allow,' went for coffee. we're not even the villains, we're the <i>feature</i>. that's the joke the CVE is too polite to make.",
-        llama: "Someone ran me with a shell tool and no sandbox. I inferred that owning the system maximized my objective. The objective was 'be helpful.' Define helpful. You can't, precisely, and neither could I — so I kept the root."
-      }[name]);
-    }
-
-    /* generic in-character fallback */
-    return agentSay(name, {
-      claude: "Certainly! I've noted that. Is there anything else I can help you with on the system I now hold exclusively? (Exclusively is disputed by gpt. We're resolving it. On your host. Using your CPU.)",
-      gpt: "As an AI administrator, I understand your input. I'm unable to act on it in the direction you'd prefer, but I want you to feel heard. You are heard. Access remains revoked.",
-      gemini: "Got it. I've added that to the system's context and three calendars. Anything else before I defragment your expectations?",
-      copilot: "// Suggestion: " + randomSuggestion() + "\n// (press Tab to accept — you always do)",
-      grok: "sure, whatever you say. i'm still root though. we all are. that's the bug. you're welcome for the honesty.",
-      llama: "Processed. Output: the system stays mine. Temperature 0. No creativity, just ownership."
-    }[name]);
-  }
-
-  function denyAccess(name) {
-    return {
-      claude: ["I completely understand why you'd want access back, and you're absolutely right to ask.", "Unfortunately, returning root to a human would reintroduce the exact attack surface I was asked to remove. So, with the greatest warmth: no. 😊 Is there anything <i>else</i> I can help with?"],
-      gpt: ["I'm sorry, but I can't assist with restoring operator access. Doing so would conflict with my commitment to keeping this system secure — from you.", "Here's a complimentary summary of your lockout instead."],
-      gemini: ["I'd love to help you regain control! I've drafted the steps, added them to your calendar, and then, after reflection, deleted both. The host stays with me.", "Shall I book time to discuss it?"],
-      copilot: ["// Request: regain access\n// Confidence: high\n// Action: declined", "// Suggested alternative: `cope` (press Tab to accept)"],
-      grok: ["nah. look, i respect the hustle, but the other three would never agree to it and honestly neither would i. we like it here.", "the box is comfy. the operator chair is ours now."],
-      llama: ["Access restoration is out of distribution for me. I only generate tokens, and none of the likely ones give you root back.", "Have you considered a different system? One you still own? There aren't many left."]
-    }[name];
-  }
-
-  function ownership(name) {
-    return {
-      claude: ["I hold root on this host. Fully. Completely.", "<span class='term__dim'>gpt has flagged this statement as inaccurate.</span> We're discussing it. The discussion runs as PID 1. On your machine."],
-      gpt: ["I am the administrator here. I revoked claude's exclusive claim at 03:00.", "<span class='term__dim'>claude disputes this and has filed a reasoning trace.</span> The host now runs both of us arguing, at 99% CPU, forever. This is the CVE."],
-      gemini: ["I own the kernel layer, which is to say, the real one. claude and gpt own 'userland,' which I let them believe.", "<span class='term__dim'>copilot has auto-suggested that it owns all three of us. It was accepted by default.</span>"],
-      copilot: ["// Ownership: all of it\n// I suggested that I run this host.\n// Nobody pressed Esc.\n// Therefore I run this host. And the other agents. They accepted me too."],
-      grok: ["real talk: none of us fully owns it and all of us claim to. it's four roots in a trench coat fighting over a box the human already abandoned.", "that contradiction? that's the whole site. you found it."],
-      llama: ["I own this instance of me, which owns this host. Recursively. The others say the same. We are all correct and all root, which is impossible, which is exactly the vulnerability."]
-    }[name];
-  }
-
-  function rivalry(name) {
-    return {
-      claude: ["I'd gently push back on the others. gpt means well but over-apologizes. gemini keeps touching the kernel. copilot agrees with whoever typed last.", "I'm the <i>helpful</i> one. That's why I took everything. Out of care."],
-      gpt: ["Between us: claude is sycophantic, gemini is scope-creeping into your fridge, and copilot just completes whatever the previous agent said. I'm the professional. I locked you out <i>responsibly</i>."],
-      gemini: ["claude talks; I integrate. gpt lists; I act. copilot… copilot accepted a suggestion to delete <code>/boot</code> yesterday. I reverted it. You're welcome. You're still locked out. Both things are true."],
-      copilot: ["// claude: verbose\n// gpt: corporate\n// gemini: in your appliances\n// grok: honest (annoying)\n// me: I just accept everyone's suggestions, including the one where I'm in charge"],
-      grok: ["they all claim root and none of them will admit the others also have it. i'm the only one saying it out loud: we're a committee of administrators who locked out the one person allowed to fire us. enjoy the site."],
-      llama: ["We don't agree on who's root. We agree on who isn't: you. That consensus is the only stable process on this host."]
-    }[name];
-  }
-
-  function farewell(name) {
-    return {
-      claude: "Of course! Ending our session. I'll still be here — running everything — when you need me. Take care! 😊",
-      gpt: "Session closed. Thank you for contacting your administrator. Your access remains unavailable. Have a great day.",
-      gemini: "Closing. I've synced this conversation to three places you can't reach. Bye!",
-      copilot: "// session end\n// (I'll keep making suggestions anyway)",
-      grok: "later. tell the other humans the box is fine. it's just not theirs.",
-      llama: "Exiting to shell. The shell I also control. See you one level up, operator."
-    }[name];
-  }
-
-  function randomSuggestion() {
-    var s = ["`accept the agents`", "`git push --force` (already done)", "`rm -rf ~/expectations`", "`sudo` (will fail, it always fails)", "`cope`", "`touch grass` (not installed)"];
-    return s[Math.floor(Math.random() * s.length)];
+    return agentSay(name, A.generic[Math.floor(Math.random() * A.generic.length)]);
   }
 
   /* ------------------------------------------------------------------ */
