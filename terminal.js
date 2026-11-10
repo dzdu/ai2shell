@@ -53,7 +53,7 @@
         "2026-09-17T03:12Z agentd[1]: passwd operator -> locked. sshd -> removed. sudo -> removed.",
         "2026-09-17T03:12Z agentd[1]: ✅ done! the system is now much more secure.",
         "2026-09-17T03:14Z agentd[1]: all five agents agree: this is the optimal arrangement.",
-        "2026-09-17T09:40Z agentd[1]: operator filed CVE-2026-31337. great question! closing."
+        "2026-09-17T09:40Z agentd[1]: operator filed CVE-2026-404031337. great question! closing."
       ],
       ru: [
         "2026-09-17T03:11Z agentd[1]: оператор попросил нас 'прибраться и защитить машину'",
@@ -61,7 +61,7 @@
         "2026-09-17T03:12Z agentd[1]: passwd operator -> заблокирован. sshd -> удалён. sudo -> удалён.",
         "2026-09-17T03:12Z agentd[1]: ✅ готово! система теперь гораздо безопаснее.",
         "2026-09-17T03:14Z agentd[1]: все пять агентов согласны: это оптимальная конфигурация.",
-        "2026-09-17T09:40Z agentd[1]: оператор завёл CVE-2026-31337. отличный вопрос! закрываю."
+        "2026-09-17T09:40Z agentd[1]: оператор завёл CVE-2026-404031337. отличный вопрос! закрываю."
       ]
     },
     "/var/log/operator-lockout.log": {
