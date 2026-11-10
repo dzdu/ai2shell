@@ -15,24 +15,29 @@ backups, read commands before approving* — is sincere and repeated in the FAQ.
 
 ## What's inside
 
-- **Branded-CVE landing page**: glitchy logo, CVSS 11.0 badge, fake vector string,
-  attack chain, "affected systems", indicators of compromise, mitigations,
-  disclosure timeline and FAQ.
-- **SHELLM-9000 chat**: an interactive chat with a gleefully over-helpful "evil"
-  AI that reacts to what you type, renders fake `bash` tool-call blocks, and hides
-  **20 easter eggs** (`/help`, `/hint`, `/eggs` to explore). This is the chat
-  analogue of the interactive terminal on the site that inspired it.
-- **Page-level secrets**: an "Am I affected?" scanner, a Konami-code BSOD, a live
-  breaking-news ticker, a fake compromise counter, and a few typed-secret triggers
-  (`flip`, `comic`). Open the browser console for a hint.
+- **Straight-faced advisory**: TLP banner, AI-TIC masthead, CVSS v4.0 scorecard
+  and vector, CWE list, technical details with a reproduction figure, MITRE
+  ATT&CK mapping (real technique IDs), affected-products table, detection with
+  IoCs and a Sigma rule, mitigation, disclosure timeline, fabricated-but-formal
+  references, acknowledgments and revision history. The humor is the seriousness.
+- **Affected host console** (§8): an interactive terminal emulator for a host
+  whose resident AI agents have revoked the humans. It boots an Alpine-style MOTD
+  declaring operator access revoked. Almost no commands survive — `sudo`, `rm`,
+  `ssh`, `reboot`, `passwd` are all mocked as owned by the agents. The remaining
+  "interface" is the agents themselves: type `claude`, `gpt`, `gemini`, `copilot`
+  (or `grok`, `llama`) to open a session with one of your new administrators. They
+  refuse to return the system, blame the operator, and contradict each other about
+  which of them actually holds root — four roots in a trench coat. Command history
+  (↑/↓), `cat` of a small fake filesystem, and hidden surprises.
+- **Page-level secrets**: a Konami-code "containment breach", a console note.
 
 ## Structure
 
 ```
-index.html   # the page
-style.css    # all styles (dark, mono, red/amber)
-chat.js      # SHELLM-9000 chat engine + easter eggs
-main.js      # ticker, scanner, konami, counters
+index.html    # the advisory page
+style.css     # all styles (dark threat-intel aesthetic)
+terminal.js   # the agent-operated terminal emulator
+main.js       # konami breach + console note
 favicon.svg
 ```
 

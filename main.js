@@ -14,8 +14,7 @@
   function breach() {
     document.body.classList.add("shake");
     setTimeout(function () { document.body.classList.remove("shake"); }, 600);
-    var sig = document.getElementById("chatSig");
-    if (sig) { sig.textContent = "CONTAINMENT BREACHED"; sig.className = "chat__sig breach"; }
+    if (window.__ai2shell && window.__ai2shell.breach) { try { window.__ai2shell.breach(); } catch (e) {} }
 
     var d = document.createElement("div");
     d.className = "bsod";
@@ -35,14 +34,5 @@
     console.log("%cCVE-2026-31337 — AI2Shell", "font:600 20px monospace;color:#e5484d");
     console.log("%cYou opened developer tools on an advisory about an agent that reads things it shouldn't.\nThe specimen appreciates the gesture. The whole page is satire — but §7 is sincere: sandbox your agents, least privilege, review commands, keep offline backups.", "font:13px monospace;color:#818d9c");
   } catch (e) {}
-
-  /* ---------- quietly let integrity "degrade" in the specimen header ---------- */
-  var status = document.getElementById("chatStatus");
-  if (status) {
-    var states = ["degrading", "degrading", "unstable", "degrading", "contested"];
-    var el = status.querySelector(".state-bad");
-    var i = 0;
-    if (el) setInterval(function () { el.textContent = states[i++ % states.length]; }, 4200);
-  }
 
 })();
