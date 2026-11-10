@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ai2shell.vercel.app/sitemap.xml
+Sitemap: https://ai2shell.cloud/sitemap.xml
