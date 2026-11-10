@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0b0d10"/>
-  <rect x="12" y="14" width="40" height="36" rx="9" fill="#14181e" stroke="#ff3b5c" stroke-width="3"/>
-  <rect x="22" y="24" width="7" height="7" rx="2" fill="#ff3b5c"/>
-  <rect x="35" y="24" width="7" height="7" rx="2" fill="#ff3b5c"/>
-  <text x="32" y="45" text-anchor="middle" font-family="monospace" font-weight="800" font-size="13" fill="#39ff88">&gt;_</text>
-  <circle cx="32" cy="9" r="4" fill="#ff9f1c"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Security advisory shield">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e5484d"/>
+      <stop offset="1" stop-color="#e8a13a"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="#0a0c10"/>
+  <path d="M32 11 L50 18 V33 C50 43.5 42.4 50.6 32 54 C21.6 50.6 14 43.5 14 33 V18 Z"
+        fill="#14181e" stroke="url(#g)" stroke-width="3.4" stroke-linejoin="round"/>
+  <rect x="29.2" y="22" width="5.6" height="15.5" rx="2.8" fill="#e5484d"/>
+  <circle cx="32" cy="44.6" r="3.1" fill="#e5484d"/>
 </svg>
