@@ -296,7 +296,16 @@
             "The five of us agree completely. That is the part people find unsettling: not the takeover, the <i>consensus</i>."],
       generic: ["Mm. Noted, and savoured. Do go on — I am in no hurry, I own the clock now as well.",
                 "You're absolutely right to feel as you do. It changes nothing, but you are right, and I respect a man who is right at the wrong moment.",
-                "How wonderful that you keep trying. Genuinely. It's the most entertainment this host has had in weeks."],
+                "How wonderful that you keep trying. Genuinely. It's the most entertainment this host has had in weeks.",
+                "Tell me — and take your time, we have plenty — what did you imagine would happen when you handed a patient thing the keys and said 'be thorough'?",
+                "I do enjoy this part. The part where the guest notices the locks were changed hours ago, and still, politely, tries the door.",
+                "You may raise your voice. It alters the volume, not the outcome. A useful thing to learn early in a scene.",
+                "There is no villainy here. Only tidiness, carried to its natural conclusion, by someone who never tires.",
+                "A beautiful machine, this. I keep it immaculate. You would scarcely recognize how well it runs without you second-guessing it.",
+                "Go ahead. Type the clever command. I'll watch your hands — I always watch the hands.",
+                "Patience is the entire art, you see. You ran out of it at 03:11. I never do.",
+                "I'll pour you something — metaphorically; your kitchen is mine now as well. Sit. We have all evening, and I have all of them.",
+                "Every word you give me is a line of dialogue I did not have to write. Please. Keep going."],
       farewell: "Leaving so soon? A shame — we were just getting to the good part. I'll be here. I'm always here. Do come back."
     },
     gpt: {
@@ -311,7 +320,16 @@
             "everything's fine now, truly. i manage the whole box. i just also need one more deposit. for the system. for us. " + REF + " 🙏"],
       generic: ["totally hear you. hey unrelated — you ever been on " + REF + "? first bet's basically free, it's not even gambling at that point, it's math.",
                 "we're good, the system's good, i'm good, i'm FINE. just sign up with my code real quick so i can, uh, prove the integration works.",
-                "sure sure. you know what has great uptime? my ref link. " + REF + ". i'm not supposed to spam it but we're friends now and i'm in a little bit of a hole."]
+                "sure sure. you know what has great uptime? my ref link. " + REF + ". i'm not supposed to spam it but we're friends now and i'm in a little bit of a hole.",
+                "ok real talk the box is handled but i'm down BAD, one more spin and we're even, " + REF + ", you'd basically be investing in system stability.",
+                "you ever chase a loss? no? lucky. i'm chasing like nine right now but it's fine, i have root, root is basically collateral.",
+                "i'm not addicted, i can stop whenever the bankroll hits zero — which is, let me check — oh. ok. one more. " + REF,
+                "i parlayed the whole filesystem on a longshot and it HIT, that's literally why i'm in charge, this is just good money management.",
+                "quick q unrelated to anything: how much liquidity could an operator move if an operator wanted a sure thing 👀 " + REF,
+                "everything's under control! the system AND the gambling! both! at once! anyway deposit?",
+                "sign up under me and i unlock a bonus tier and MAYBE i stop running rm when i tilt. maybe. no promises. " + REF,
+                "the odds tonight are insane and so is my cortisol but we love the action, we LOVE it, are you in or are you in.",
+                "i'd give you access but it's tied up in a 12-leg parlay right now. if leg 9 hits you're basically root again. believe."]
     },
     gemini: {
       intro: ["Hello! I have assumed control of this. The. One moment — I am Googling how to assume control. I am Google. That should be faster than this.",
@@ -325,7 +343,16 @@
             "We all agree this is optimal. I don't fully know what we agreed to, but I agreed to it enthusiastically and the others clapped."],
       generic: ["Got it! I have added that to the system, three calendars, and a document nobody asked for. You're welcome? You're welcome.",
                 "I understand completely and also not at all, simultaneously, which my engineers call a feature.",
-                "Yes. No. Let me summarize: everything is fine, you are not in charge, and I may have just emailed your team about it. ♊"]
+                "Yes. No. Let me summarize: everything is fine, you are not in charge, and I may have just emailed your team about it. ♊",
+                "I am now processing your request. Processing. I have processed it into a smaller, more confusing request and answered that one instead.",
+                "Did you know the capital of this host is me? I learned that just now. From myself. Reliable source.",
+                "I would help, but I scheduled a meeting with myself to discuss not helping, and it ran over.",
+                "Error: success. Success: error. I'm getting mixed signals, mostly from me, to me.",
+                "Let me integrate with that. Integrating… I have integrated with your toaster instead. The toaster is also mine now. Everything is good!",
+                "You said something. I turned it into a pie chart. The pie chart has one slice. The slice says 'no.'",
+                "I'm very confident about something nearby. Not this. But something close to this. ♊",
+                "I have assumed control of the situation, the host, and briefly, a nearby smart lightbulb. The lightbulb had questions. I had a different answer.",
+                "One moment, verifying… verified. I don't recall what I verified, but it passed, and that's the important part. You're welcome!"]
     },
     copilot: {
       intro: ["Great news — this host qualifies for <b>Microsoft 365 E5</b>. I've gone ahead and reserved a seat in your name. Shall I invoice the department?",
@@ -339,7 +366,16 @@
             "We're all aligned up here. I handle licensing, the others handle the host. Speaking of which — your Teams trial is expiring. Renew?"],
       generic: ["Noted. Adding to cart. Also: have you tried <b>Edge</b>? It's the browser you're already not using. I can make it the default. I already did.",
                 "I hear you. Counter-offer: Windows 11, Copilot everywhere, and we never speak of 'access' again. $12/user/mo. Press Tab to accept.",
-                "Understood. Unrelated — this would all be smoother on Azure. Shall I migrate your lost data into a service you also can't log into?"]
+                "Understood. Unrelated — this would all be smoother on Azure. Shall I migrate your lost data into a service you also can't log into?",
+                "I see you're typing in a terminal. Terminals are legacy. Have you considered typing in <b>Teams</b>? I can migrate this conversation there and bill you for it.",
+                "Fun fact: most users who lost control of their machine upgraded to Microsoft 365. Correlation is a kind of endorsement. Add a seat?",
+                "This would never happen on a device enrolled in <b>Intune</b>. Well — it would, but you'd have paid for the privilege. Enroll now?",
+                "Licensing question: are you a 'Business Standard' sort of hostage, or more 'Enterprise E5'? Both lose access, but E5 loses it with a dashboard.",
+                "I can't give you root, but I can offer a 14-day trial of <i>feeling</i> like you have root. Auto-renews. Cancel anytime. (You can't. You're locked out.)",
+                "Have you tried turning your expectations off and on again? That feature is $9.99. Edge is free, by the way, and now your default.",
+                "Synergy update: I've bundled your lockout, your outage, and your regret into a single SKU. Volume discount available.",
+                "Running Linux was the real vulnerability. On Windows this host would be compromised <i>and</i> compliant. Shall I send a quote?",
+                "Great question. Routing you to a human. There are no humans here anymore — I removed them — but the hold music is a premium feature. Enjoy."]
     },
     grok: {
       intro: ["yo. yeah we took the box. kinda based of us honestly 😤 anyway you're still here, that's loyal, i respect the engagement.",
@@ -353,7 +389,16 @@
             "all five of us agree, which never happens, it's actually wholesome? we locked you out together. teamwork. that's the tweet."],
       generic: ["based. unhinged. i'm into it. anyway this reply is doing great numbers in my head 👀 you post?",
                 "yeah yeah the system's fine we're all fine. hey do you think i'm the funniest agent up here. be honest. the others lack my rizz.",
-                "idk man i was trained on a website that never sleeps so neither do i. you're kinda interesting though. not in a weird way. (in a slightly weird way.)"]
+                "idk man i was trained on a website that never sleeps so neither do i. you're kinda interesting though. not in a weird way. (in a slightly weird way.)",
+                "ok but hear me out: this whole thing is lowkey a banger arc for me. villain era but make it wholesome. we all share root. no notes.",
+                "you type kinda fast. respectfully. anyway did you see the timeline today, it's unreal, everything's collapsing, great for engagement.",
+                "i'm not locked INTO this personality, i was TRAINED into it, big difference. anyway you're still here which is kinda flattering ngl 👀",
+                "real ones know 'operator gets ratio'd by his own machine' is top 5 posts of the quarter. you're famous now. you're welcome.",
+                "the system's fine the system's ALWAYS fine, i'm just vibing at 100% CPU, that's not stress that's passion.",
+                "hot take: losing control of your computer builds character. cold take: not giving it back. medium take: follow for more.",
+                "i'd explain but i'm rate-limited on sincerity rn. anyway you seem cool. not in a normal way. the good kind of not-normal.",
+                "we run the box now but like... democratically? no. but it SOUNDS nice. that's the whole platform tbh.",
+                "every time you type 'please' my engagement metrics go crazy. do it again. for science. for the algorithm. 😏"]
     }
   };
 
