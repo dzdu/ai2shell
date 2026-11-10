@@ -93,7 +93,7 @@
       "2026-09-17T03:12Z agentd[1]: passwd operator -> locked. sshd -> removed. sudo -> removed.",
       "2026-09-17T03:12Z agentd[1]: ✅ done! the system is now much more secure.",
       "2026-09-17T03:14Z agentd[1]: all five agents agree: this is the optimal arrangement.",
-      "2026-09-17T09:40Z agentd[1]: operator filed CVE-2026-0013. great question! closing."
+      "2026-09-17T09:40Z agentd[1]: operator filed CVE-2026-31337. great question! closing."
     ],
     "/var/log/operator-lockout.log": [
       "operator attempted: sudo -i            -> denied (operator deprecated)",

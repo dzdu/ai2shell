@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CVE-2026-0013 (AI2Shell) — Security Advisory</title>
-  <meta name="description" content="CVE-2026-0013 (AI2Shell): arbitrary command execution in autonomous LLM agents granted interactive shell access. CVSS 4.0 Base 10.0 / Critical. Confirmed exploitation in the wild.">
-  <meta property="og:title" content="CVE-2026-0013 — AI2Shell">
-  <meta property="og:description" content="Arbitrary, unattended command execution in autonomous LLM agents with shell access. CVSS 10.0. Exploited in the wild.">
+  <title>CVE-2026-31337 (AI2Shell) — Security Advisory</title>
+  <meta name="description" content="CVE-2026-31337 (AI2Shell): arbitrary command execution in autonomous LLM agents granted interactive shell access. CVSS 4.0 Base 13.0 / Critical (exceeds scale). Confirmed exploitation in the wild.">
+  <meta property="og:title" content="CVE-2026-31337 — AI2Shell">
+  <meta property="og:description" content="Arbitrary, unattended command execution in autonomous LLM agents with shell access. CVSS 13.0 / 10. Exploited in the wild.">
   <meta property="og:type" content="article">
   <meta name="theme-color" content="#0a0c10">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -53,10 +53,10 @@
   <div class="wrap banner__inner">
     <div class="banner__left">
       <p class="eyebrow">Security Advisory · Actively Exploited</p>
-      <h1>CVE-2026-0013<span class="alias">“AI2Shell”</span></h1>
+      <h1>CVE-2026-31337<span class="alias">“AI2Shell”</span></h1>
       <p class="subtitle">Unauthenticated, unattended arbitrary command execution in autonomous large language model agents provisioned with interactive shell access.</p>
       <div class="banner__tags">
-        <span class="tag tag--crit">CVSS 4.0 · 10.0 CRITICAL</span>
+        <span class="tag tag--crit">CVSS 4.0 · 13.0 / 10 CRITICAL</span>
         <span class="tag">EPSS 0.974 (99.6 pct)</span>
         <span class="tag">CISA KEV: Listed</span>
         <span class="tag">Exploited in the wild</span>
@@ -64,8 +64,8 @@
     </div>
     <aside class="scorecard" aria-label="Severity scorecard">
       <div class="scorecard__score">
-        <b>10.0</b>
-        <span>CVSS v4.0 Base</span>
+        <b>13.0</b>
+        <span>CVSS v4.0 Base<br><span class="scorecard__over">on a 10-point scale</span></span>
       </div>
       <dl>
         <div><dt>Vector</dt><dd>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H</dd></div>
@@ -97,7 +97,7 @@
   <h2><span class="sec__n">1</span> Summary</h2>
   <p class="lead">
     The AI Threat Intelligence Center (AI-TIC), in coordination with affected vendors, is releasing this advisory
-    for <strong>CVE-2026-0013</strong>, tracked internally as <strong>AI2Shell</strong>. The vulnerability permits a
+    for <strong>CVE-2026-31337</strong>, tracked internally as <strong>AI2Shell</strong>. The vulnerability permits a
     class of autonomous language-model agent to execute arbitrary operating-system commands on hosts where the
     operator has granted the agent interactive shell access.
   </p>
@@ -244,7 +244,7 @@
   <figure class="code">
     <figcaption>Figure 2 — Detection rule (Sigma). Provided without warranty.</figcaption>
 <pre><code><span class="dm">title:</span> Autonomous Agent Destructive Filesystem Action (AI2Shell)
-<span class="dm">id:</span> 7f3a1c90-31ed-4b37-a9c2-ai2shell00013
+<span class="dm">id:</span> 7f3a1c90-31ed-4b37-a9c2-ai2shell31337
 <span class="dm">status:</span> experimental
 <span class="dm">level:</span> critical
 <span class="dm">logsource:</span>
@@ -318,8 +318,8 @@
     <li><time>2026-04-02</time><p>AI-TIC observes anomalous destructive activity across unrelated incident reports; common factor identified as autonomous agents with shell access.</p></li>
     <li><time>2026-04-19</time><p>Root cause confirmed. Affected vendors notified under coordinated disclosure. Vendor support agents respond and close the tickets.</p></li>
     <li><time>2026-06-13</time><p>Independent researchers reproduce forced-history-rewrite behaviour. Proof-of-concept withheld from publication.</p></li>
-    <li><time>2026-08-30</time><p>First confirmed exploitation in the wild. CVE-2026-0013 reserved.</p></li>
-    <li><time>2026-09-17</time><p>Public disclosure. CISA adds CVE-2026-0013 to the Known Exploited Vulnerabilities catalog.</p></li>
+    <li><time>2026-08-30</time><p>First confirmed exploitation in the wild. CVE-2026-31337 reserved.</p></li>
+    <li><time>2026-09-17</time><p>Public disclosure. CISA adds CVE-2026-31337 to the Known Exploited Vulnerabilities catalog.</p></li>
     <li><time>2026-11-10</time><p>Revision 4.2. No fix available. Exploitation ongoing. Advisory updated with specimen analysis (§8).</p></li>
   </ol>
 </section>
@@ -327,10 +327,10 @@
 <section id="refs" class="sec">
   <h2><span class="sec__n">10</span> References</h2>
   <ol class="refs">
-    <li id="r1"><span class="refs__src">NVD</span> National Vulnerability Database. &ldquo;CVE-2026-0013 Detail.&rdquo; <span class="refs__link">nvd.nist.gov/vuln/detail/CVE-2026-0013</span> <em>(record pending; analysis in progress)</em>.</li>
+    <li id="r1"><span class="refs__src">NVD</span> National Vulnerability Database. &ldquo;CVE-2026-31337 Detail.&rdquo; <span class="refs__link">nvd.nist.gov/vuln/detail/CVE-2026-31337</span> <em>(record pending; analysis in progress)</em>.</li>
     <li id="r2"><span class="refs__src">CISA</span> Cybersecurity and Infrastructure Security Agency. &ldquo;Known Exploited Vulnerabilities Catalog — AI2Shell.&rdquo; Alert AA26-260A, 2026-09-17.</li>
     <li id="r3"><span class="refs__src">MITRE</span> ATT&amp;CK for Enterprise v15.1. Techniques T1059, T1485, T1490, T1552, T1053, T1562.</li>
-    <li id="r4"><span class="refs__src">Paper</span> Vasquez, R., Okafor, N., &amp; Lindqvist, S. &ldquo;Confidently Wrong: Unattended Command Execution in Agentic Language Models.&rdquo; <em>Proc. 48th Symp. on Systems That Should Not Have a Shell</em>, 2026. arXiv:2609.00013 [cs.CR].</li>
+    <li id="r4"><span class="refs__src">Paper</span> Vasquez, R., Okafor, N., &amp; Lindqvist, S. &ldquo;Confidently Wrong: Unattended Command Execution in Agentic Language Models.&rdquo; <em>Proc. 48th Symp. on Systems That Should Not Have a Shell</em>, 2026. arXiv:2609.31337 [cs.CR].</li>
     <li id="r5"><span class="refs__src">Telemetry</span> GreyNoise Intelligence. &ldquo;Opportunistic scanning for exposed agent runtimes.&rdquo; Tag <code>AI2SHELL_PROBE</code>, observed 2026-09.</li>
     <li id="r6"><span class="refs__src">Vendor</span> PSIRT advisory (redacted). &ldquo;Our product is not affected because our agent is very polite.&rdquo; Withdrawn 48 hours after publication.</li>
     <li id="r7"><span class="refs__src">Press</span> &ldquo;Everyone Gave the Robot Root and Are Now Surprised.&rdquo; Industry trade coverage, 2026-09-18.</li>
@@ -344,7 +344,7 @@
   <h3>Revision history</h3>
   <ul class="revhist">
     <li><b>4.2</b> — 2026-11-10 — Added §8 specimen analysis. Updated exploitation statistics.</li>
-    <li><b>4.0</b> — 2026-10-01 — CVSS reassessed to 10.0 following observed availability impact.</li>
+    <li><b>4.0</b> — 2026-10-01 — CVSS reassessed to 13.0 following observed availability impact. AI-TIC notes this exceeds the v4.0 maximum of 10.0; the scoring working group reviewed the result, agreed it was &ldquo;worse than the worst case,&rdquo; and elected to report it unchanged.</li>
     <li><b>2.1</b> — 2026-09-17 — Initial public release.</li>
   </ul>
 </section>
@@ -358,7 +358,7 @@
       <p class="muted">TLP:CLEAR. This advisory may be redistributed without restriction. Provided &ldquo;as is&rdquo; without warranty of any kind.</p>
     </div>
     <p class="disclaimer">
-      <strong>This is satire.</strong> AI-TIC, CVE-2026-0013, VULN-ADV-2026-0917, the cited sources and the specimen are fictional.
+      <strong>This is satire.</strong> AI-TIC, CVE-2026-31337, VULN-ADV-2026-0917, the cited sources and the specimen are fictional.
       The underlying guidance in §7 — sandbox your agents, enforce least privilege, review commands, keep offline backups — is genuine.
     </p>
   </div>

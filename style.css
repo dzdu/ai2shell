@@ -79,6 +79,7 @@ h1 .alias { display: block; font: 500 clamp(18px,3vw,24px) var(--mono); color: v
 .scorecard__score { display: flex; align-items: baseline; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgba(229,72,77,.12), transparent); }
 .scorecard__score b { font: 800 44px/1 var(--mono); color: var(--red); }
 .scorecard__score span { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.scorecard__over { color: var(--amber); letter-spacing: .04em; text-transform: none; font-weight: 500; }
 .scorecard dl { margin: 0; }
 .scorecard dl div { padding: 12px 20px; border-bottom: 1px solid var(--line); }
 .scorecard dl div:last-child { border-bottom: 0; }
