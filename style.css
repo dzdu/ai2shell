@@ -61,6 +61,11 @@ pre code { background: none; padding: 0; }
 .masthead__brand span { display: block; color: var(--muted); font-size: 12px; }
 .masthead__meta { display: flex; gap: 18px; font: 500 12px var(--mono); color: var(--muted); flex-wrap: wrap; }
 .masthead__meta .rev { color: var(--amber); }
+.langtoggle { display: inline-flex; align-items: center; gap: 6px; font: 600 12px var(--mono); color: var(--muted-2); background: var(--panel); border: 1px solid var(--line-2); border-radius: 6px; padding: 5px 10px; cursor: pointer; letter-spacing: .04em; }
+.langtoggle:hover { border-color: var(--line-2); color: var(--muted); }
+.langtoggle .langsep { color: var(--line-2); }
+.langtoggle [data-lang] { padding: 1px 2px; border-radius: 3px; }
+.langtoggle [data-lang].is-active { color: var(--red); }
 
 /* ---------- banner ---------- */
 .banner { border-bottom: 1px solid var(--line); background:

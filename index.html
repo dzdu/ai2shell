@@ -57,9 +57,12 @@
       </div>
     </div>
     <div class="masthead__meta">
-      <span>Published <time datetime="2026-09-17">2026-09-17</time></span>
-      <span>Last updated <time datetime="2026-11-10">2026-11-10</time></span>
-      <span class="rev">Revision 4.2</span>
+      <span data-i18n="meta.pub">Published <time datetime="2026-09-17">2026-09-17</time></span>
+      <span data-i18n="meta.upd">Last updated <time datetime="2026-11-10">2026-11-10</time></span>
+      <span class="rev" data-i18n="meta.rev">Revision 4.2</span>
+      <button type="button" class="langtoggle" id="langToggle" aria-label="Language">
+        <span data-lang="en">EN</span><span class="langsep">·</span><span data-lang="ru">RU</span>
+      </button>
     </div>
   </div>
 </header>
@@ -369,6 +372,7 @@
 
 <div class="overlay" id="overlay" hidden></div>
 
+<script src="i18n.js"></script>
 <script src="terminal.js"></script>
 <script src="main.js"></script>
 </body>
