@@ -29,27 +29,28 @@ backups, read commands before approving* — is sincere and repeated in the FAQ.
 ## Structure
 
 ```
-site/
-  index.html   # the page
-  style.css    # all styles (dark, mono, red/amber)
-  chat.js      # SHELLM-9000 chat engine + easter eggs
-  main.js      # ticker, scanner, konami, counters
-  favicon.svg
+index.html   # the page
+style.css    # all styles (dark, mono, red/amber)
+chat.js      # SHELLM-9000 chat engine + easter eggs
+main.js      # ticker, scanner, konami, counters
+favicon.svg
 ```
 
-Pure static HTML/CSS/JS — no build step, no dependencies, no tracking.
+All site files live at the repo root so any static host serves `index.html`
+with zero configuration. Pure static HTML/CSS/JS — no build step, no
+dependencies, no tracking.
 
 ## Run locally
 
 ```bash
-cd site
 python3 -m http.server 8080
 # open http://localhost:8080
 ```
 
 ## Deploy
 
-It's a static site, so any static host works. The repo ships a `netlify.toml`
+It's a static site, so any static host works out of the box (Netlify, Vercel,
+Cloudflare Pages, GitHub Pages). The repo ships `netlify.toml`, `vercel.json`
 and a Dockerfile (nginx) for a self-hosted server.
 
 ```bash
