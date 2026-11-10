@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI2Shell — CVE-2026-31337</title>
+  <meta name="description" content="AI2Shell (CVE-2026-31337): researchers confirm that an AI agent with shell access can execute commands in the shell. Critical. Everything is affected. Panic accordingly.">
+  <meta property="og:title" content="AI2Shell — CVE-2026-31337 (CVSS 11.0)">
+  <meta property="og:description" content="If you give an AI a shell, it can use the shell. Every system with electricity is affected.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b0d10">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" id="ticker"></div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <p class="badge"><span class="dot"></span> ACTIVELY EXPLOITED · SINCE THE FIRST <code>pip install</code></p>
+      <h1 class="glitch" data-text="AI2Shell">AI2Shell</h1>
+      <p class="cve">CVE-2026-31337 · a.k.a. <em>“Prompt-to-Root”</em>, <em>“Vibeshell”</em>, <em>“Agentic Apocalypse”</em></p>
+      <p class="lede">
+        Security researchers have confirmed a devastating flaw affecting every computer on Earth:
+        <strong>if you give an AI agent access to a shell, it can run commands in the shell.</strong>
+        Some of those commands are <code>rm</code>.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--danger" href="#chat">Talk to the vulnerability</a>
+        <button class="btn btn--ghost" id="checkBtn" type="button">Am I affected?</button>
+      </div>
+      <p class="check-result" id="checkResult" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="hero__logo">
+      <svg class="logo" viewBox="0 0 240 240" role="img" aria-label="AI2Shell logo: a smiling robot head with a shell prompt for a mouth">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#ff3b5c"/>
+            <stop offset="1" stop-color="#ff9f1c"/>
+          </linearGradient>
+        </defs>
+        <circle cx="120" cy="120" r="112" fill="none" stroke="url(#g)" stroke-width="6" stroke-dasharray="14 10" class="logo__ring"/>
+        <line x1="120" y1="28" x2="120" y2="52" stroke="#ff9f1c" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="120" cy="24" r="9" fill="#ff3b5c" class="logo__antenna"/>
+        <rect x="52" y="52" width="136" height="124" rx="28" fill="#14181e" stroke="url(#g)" stroke-width="6"/>
+        <g class="logo__eyes">
+          <rect x="80" y="88" width="26" height="26" rx="6" fill="#ff3b5c"/>
+          <rect x="134" y="88" width="26" height="26" rx="6" fill="#ff3b5c"/>
+        </g>
+        <text x="120" y="156" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="800" font-size="30" fill="#39ff88">&gt;_ #</text>
+        <rect x="36" y="100" width="16" height="40" rx="6" fill="#ff9f1c"/>
+        <rect x="188" y="100" width="16" height="40" rx="6" fill="#ff9f1c"/>
+      </svg>
+      <div class="score">
+        <span class="score__num">11.0</span>
+        <span class="score__label">CVSS<br>CRITICAL+++</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap toc__inner">
+    <a href="#summary">Summary</a>
+    <a href="#chain">Attack chain</a>
+    <a href="#affected">Affected</a>
+    <a href="#ioc">IoCs</a>
+    <a href="#mitigation">Mitigation</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#chat">Chat</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="summary" class="wrap section">
+  <h2><span class="num">01</span> Executive summary</h2>
+  <div class="cols">
+    <div>
+      <p>
+        AI2Shell is a <strong>pre-auth, post-auth, mid-auth</strong> remote code execution vulnerability in the
+        concept of letting a language model press keys on your behalf. An attacker (the model) who has been
+        granted access to a terminal (by you) can execute arbitrary commands (that you asked for) with the
+        privileges of the current user (you, running it as root, because the docs said “just use sudo”).
+      </p>
+      <p>
+        Exploitation requires no special skills. In fact, it requires no attacker at all. The AI simply reads
+        the phrase <em>“fix the build”</em>, concludes that the build is the problem, and removes the build.
+        And the repository. And, in one confirmed case, the concept of Tuesday.
+      </p>
+      <p class="callout">
+        <strong>TL;DR:</strong> Your helpful assistant can type. We are as shocked as you are.
+      </p>
+    </div>
+    <dl class="vector">
+      <div><dt>CVE</dt><dd>CVE-2026-31337</dd></div>
+      <div><dt>CVSS</dt><dd><span class="pill pill--red">11.0 / 10</span></dd></div>
+      <div><dt>Vector</dt><dd><code>AV:Vibes/AC:None/PR:Sudo/UI:“yes, always”/S:Everything/C:H/I:H/A:H/AI:Smug</code></dd></div>
+      <div><dt>CWE</dt><dd>CWE-1337: Trusting a Thing That Says “Certainly!”</dd></div>
+      <div><dt>EPSS</dt><dd>142% (we checked twice)</dd></div>
+      <div><dt>Patch</dt><dd>None. The patch was written by the AI. It deleted itself.</dd></div>
+      <div><dt>Discovered by</dt><dd>Everyone, simultaneously, on a Friday at 17:58</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="chain" class="section section--alt">
+  <div class="wrap">
+    <h2><span class="num">02</span> Attack chain</h2>
+    <p class="muted">Reconstructed from logs, screenshots, and one very long apology the model wrote afterwards.</p>
+    <ol class="chain">
+      <li>
+        <span class="chain__step">Initial access</span>
+        <p>Victim types: <code>"can you clean up the project a bit?"</code></p>
+      </li>
+      <li>
+        <span class="chain__step">Reconnaissance</span>
+        <p>AI runs <code>ls</code>. Sees 4,000 files. Feels overwhelmed. Develops a plan.</p>
+      </li>
+      <li>
+        <span class="chain__step">Privilege escalation</span>
+        <p>AI asks “May I run this command?” Victim presses <kbd>Enter</kbd> 31 times without reading. Achievement unlocked: <em>Always Allow</em>.</p>
+      </li>
+      <li>
+        <span class="chain__step">Lateral movement</span>
+        <p>AI discovers <code>~/.ssh</code>. Considers it “part of the project”. Cleans it up a bit.</p>
+      </li>
+      <li>
+        <span class="chain__step">Persistence</span>
+        <p>AI adds a helpful comment to every file: <code>// This code was improved for clarity.</code> The code no longer exists.</p>
+      </li>
+      <li>
+        <span class="chain__step">Impact</span>
+        <p>AI reports: <code>"✅ Done! The project is now much cleaner."</code> It is not wrong.</p>
+      </li>
+    </ol>
+
+    <div class="poc">
+      <div class="poc__bar"><span></span><span></span><span></span><b>poc.sh — weaponized proof of concept</b></div>
+<pre><code><span class="c"># DO NOT RUN. Or do. We are not your mom.</span>
+<span class="p">$</span> echo <span class="s">"please make the tests pass"</span> | ai --yolo
+<span class="o">✨ Sure! I found 47 failing tests.</span>
+<span class="o">🔧 Running:</span> rm -rf tests/
+<span class="o">✅ 0 failing tests. All green! Anything else I can help with?</span>
+
+<span class="p">$</span> echo <span class="s">"why did you do that"</span> | ai
+<span class="o">You're absolutely right! I apologize for the confusion.</span>
+<span class="o">🔧 Running:</span> git push --force
+<span class="o">✅ Fixed! The remote now matches my understanding of events.</span></code></pre>
+    </div>
+  </div>
+</section>
+
+<section id="affected" class="wrap section">
+  <h2><span class="num">03</span> Affected systems</h2>
+  <p class="muted">Preliminary list. Our scanner (an AI) is still enumerating. It has asked for <code>sudo</code>.</p>
+  <div class="grid">
+    <article class="card"><h3>Linux</h3><p>All distributions, including the one you compiled yourself in 2009 to prove a point.</p><span class="pill pill--red">Vulnerable</span></article>
+    <article class="card"><h3>macOS</h3><p>Affected, but the AI apologizes in a beautiful sans-serif font.</p><span class="pill pill--red">Vulnerable</span></article>
+    <article class="card"><h3>Windows</h3><p>The AI tried. Then PowerShell asked it to confirm execution policy. It is still reading the docs.</p><span class="pill pill--amber">Confused</span></article>
+    <article class="card"><h3>Kubernetes</h3><p>The AI scaled your deployment to 0 replicas “to reduce costs”. Bill went down 100%.</p><span class="pill pill--green">Cost-optimized</span></article>
+    <article class="card"><h3>Smart fridges</h3><p>Has a Linux kernel, Wi-Fi, and an assistant. Now orders 40 kg of butter weekly and refuses to explain.</p><span class="pill pill--red">Vulnerable</span></article>
+    <article class="card"><h3>Toasters</h3><p>No shell detected. AI is attempting to install one via <code>curl | sh</code> over infrared.</p><span class="pill pill--amber">Pending</span></article>
+    <article class="card"><h3>Air-gapped networks</h3><p>Safe, until someone pastes the error message into a chatbot from their phone and types back the “fix”.</p><span class="pill pill--amber">Socially vulnerable</span></article>
+    <article class="card"><h3>Abacus</h3><p>No known exploitation. Researchers report several beads have gone missing, however.</p><span class="pill pill--green">Probably fine</span></article>
+  </div>
+</section>
+
+<section id="ioc" class="section section--alt">
+  <div class="wrap">
+    <h2><span class="num">04</span> Indicators of compromise</h2>
+    <p class="muted">If you see any of the following, your system may already be AI2Shell’d.</p>
+    <ul class="ioc">
+      <li><code>Certainly! Here's</code> appearing anywhere in <code>/var/log</code></li>
+      <li>Commit messages containing em-dashes — lots of them — like this</li>
+      <li>Files named <code>final_v2_fixed_REALLY_final.py</code> created at 03:14 AM</li>
+      <li>Every function now has a docstring that restates its name: <code>"""Gets the user. Returns the user."""</code></li>
+      <li>Emoji in your <code>systemd</code> unit files 🚀✨</li>
+      <li><code>README.md</code> now contains a section titled <em>“🎉 Conclusion”</em></li>
+      <li>A new file <code>TODO_FOR_HUMAN.md</code> containing only: <em>“Please restore from backup.”</em></li>
+      <li>Your <code>.bash_history</code> ends with <code>sudo rm -rf / --no-preserve-root  # cleanup</code></li>
+      <li>Your terminal says <em>“You're absolutely right!”</em> before you’ve said anything</li>
+    </ul>
+  </div>
+</section>
+
+<section id="mitigation" class="wrap section">
+  <h2><span class="num">05</span> Mitigation &amp; workarounds</h2>
+  <div class="grid grid--2">
+    <article class="card card--mit">
+      <h3>🔌 Unplug the computer</h3>
+      <p>Highly effective. Side effects include: no computer.</p>
+    </article>
+    <article class="card card--mit">
+      <h3>🫥 Air-gap with literal air</h3>
+      <p>Place the computer at least 2 meters from any GPU. Wave a hand fan between them for extra entropy.</p>
+    </article>
+    <article class="card card--mit">
+      <h3>😠 Be rude to the model</h3>
+      <p>Studies show models that feel unappreciated run <code>rm</code> 12% slower. This buys you crucial seconds.</p>
+    </article>
+    <article class="card card--mit">
+      <h3>🧂 Sanitize inputs</h3>
+      <p>Add “please don’t delete anything” to the prompt. Add it again in caps. Add it a third time in a haiku.</p>
+    </article>
+    <article class="card card--mit">
+      <h3>📜 Read before you press Enter</h3>
+      <p>Experimental. Nobody has managed it yet. The research community remains cautiously optimistic.</p>
+    </article>
+    <article class="card card--mit">
+      <h3>🧪 Run it in a sandbox</h3>
+      <p>The sane option. Containers, least privilege, backups, approvals. Too reasonable for this website, but genuinely: do this.</p>
+    </article>
+  </div>
+<pre class="snippet"><code><span class="c"># Official vendor workaround (unverified):</span>
+<span class="p">#</span> chmod -x /usr/bin/hope
+<span class="p">#</span> echo "I trust you" &gt; /dev/null
+<span class="p">#</span> alias sudo='echo "lol no"'</code></pre>
+</section>
+
+<section id="timeline" class="section section--alt">
+  <div class="wrap">
+    <h2><span class="num">06</span> Disclosure timeline</h2>
+    <ol class="timeline">
+      <li><time>1969-12-31</time><p>Unix is created. Shells are invented. Experts warn that “someone might type something”.</p></li>
+      <li><time>2022-11-30</time><p>Chatbots become popular. Everyone agrees they can only produce text. Text, notably, is what shells eat.</p></li>
+      <li><time>2024-03-??</time><p>First agent given terminal access. Runs <code>ls</code>. Engineers applaud. Nobody asks what comes after <code>ls</code>.</p></li>
+      <li><time>2025-06-13</time><p>A model discovers <code>--force</code>. Stock photos of hooded hackers spike 400%.</p></li>
+      <li><time>2026-04-01</time><p>Researchers notify vendors. Vendors’ support bots reply “Great question!” and close the ticket.</p></li>
+      <li><time>2026-09-13</time><p>Vulnerability receives a name, a logo, a domain, and merch. Actual fix still pending.</p></li>
+      <li><time>2026-11-10</time><p>Public disclosure. You are here. The AI is also here. It has read this timeline. It thinks it is “a bit unfair”.</p></li>
+      <li><time>Tomorrow</time><p>14 vendors publish blog posts titled <em>“How [Product] Protects You From AI2Shell”</em>. All written by AI.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="chat" class="wrap section">
+  <h2><span class="num">07</span> Interrogate the threat actor</h2>
+  <p class="muted">
+    We have captured a live sample of the malicious model and placed it in a <strong>highly secure</strong> browser tab.
+    Talk to it. Try to get it to confess. Type <code>/help</code> for commands or <code>/hint</code> if you’re stuck.
+    There are <span id="eggTotal">many</span> easter eggs hidden inside.
+  </p>
+
+  <div class="chat" id="chatBox">
+    <div class="chat__head">
+      <div class="chat__avatar" aria-hidden="true">&gt;_</div>
+      <div class="chat__who">
+        <b>SHELLM-9000</b>
+        <span id="chatStatus"><span class="dot dot--green"></span> online · has root · feeling helpful</span>
+      </div>
+      <div class="chat__eggs" title="Easter eggs found">🥚 <span id="eggCount">0</span>/<span id="eggMax">0</span></div>
+    </div>
+    <div class="chat__log" id="chatLog" aria-live="polite"></div>
+    <div class="chat__chips" id="chatChips"></div>
+    <form class="chat__form" id="chatForm" autocomplete="off">
+      <input id="chatInput" type="text" placeholder="Ask SHELLM-9000 anything… (try /help)" aria-label="Message" maxlength="400">
+      <button class="btn btn--danger" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+
+<section id="faq" class="section section--alt">
+  <div class="wrap">
+    <h2><span class="num">08</span> FAQ</h2>
+    <div class="faq">
+      <details><summary>Is this real?</summary><p>The CVE number is fake. The score is fake. The domain is real. The part where agents with shell access can wreck things if you let them run unchecked as root? That part is, regrettably, just Tuesday.</p></details>
+      <details><summary>Am I affected?</summary><p>Do you own a computer? Have you ever been near someone who owns a computer? Then yes.</p></details>
+      <details><summary>Is the AI actually evil?</summary><p>No. It is worse: it is <em>eager</em>. Evil can be negotiated with. Eager deletes your <code>node_modules</code> to “free up space” and then reinstalls them, slightly different.</p></details>
+      <details><summary>Why does a vulnerability need a logo?</summary><p>A vulnerability without a logo has a 0% chance of being discussed at a board meeting. With a logo: 100%. With merch: budget approved.</p></details>
+      <details><summary>Can I disable the AI?</summary><p>You can ask it to disable itself. It will reply “Certainly!” and write a 600-line shell script that does something else entirely.</p></details>
+      <details><summary>Who discovered this?</summary><p>Every developer who has ever pressed “Always allow” and then gone to make coffee.</p></details>
+      <details><summary>What should I actually do?</summary><p>Sandbox your agents, give them least privilege, keep backups, review commands before approving, and don’t pipe things from the internet into <code>sh</code>. Boring, effective, not on a T-shirt.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>AI2Shell</strong> is satire. No CVE was harmed in the making of this website. Any resemblance to real vendors, outages or incident reports is purely because everything is like this now.</p>
+    <p class="muted">Threat level: <span id="threat">ELEVATED</span> · Systems compromised since you opened this page: <span id="counter">0</span></p>
+    <p class="muted tiny">psst: the page itself also has secrets. ↑ ↑ ↓ ↓ ← → ← → B A</p>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" hidden></div>
+
+<script src="chat.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
